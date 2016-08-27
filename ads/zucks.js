@@ -22,5 +22,5 @@ import {validateData, writeScript} from '../3p/3p';
  */
 export function zucks(global, data) {
   validateData(data, ['frame_id']);
-  writeScript(global, `https://j.zucks.net.zimg.jp/j?f=${data.frame_id}`);
+  writeScript(global, `https://j.zucks.net.zimg.jp/j?f=${data['frame_id']}`);
 }
