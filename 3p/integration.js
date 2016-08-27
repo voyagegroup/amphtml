@@ -96,6 +96,7 @@ import {yieldbot} from '../ads/yieldbot';
 import {yieldmo} from '../ads/yieldmo';
 import {yieldone} from '../ads/yieldone';
 import {zergnet} from '../ads/zergnet';
+import {zucks} from '../ads/zucks';
 
 
 /**
@@ -177,6 +178,7 @@ register('yieldbot', yieldbot);
 register('yieldmo', yieldmo);
 register('zergnet', zergnet);
 register('yieldone', yieldone);
+register('zucks', zucks);
 
 register('_ping_', function(win, data) {
   win.document.getElementById('c').textContent = data.ping;
