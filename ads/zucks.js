@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {validateData, writeScript} from '../3p/3p';
+import {loadScript, validateData, writeScript} from '../3p/3p';
 
 /**
  * @param {!Window} global
@@ -22,6 +22,22 @@ import {validateData, writeScript} from '../3p/3p';
  */
 export function zucks(global, data) {
   validateData(data, ['frameId']);
+
+  if (data['adtype'] === 'zoe') {
+    loadScript(global, 'https://j.zoe.zucks.net/zoe.min.js', function() {
+      const frame = data['frameId'];
+      const id = 'zucks-widget-parent';
+
+      const d = global.document.createElement('ins');
+      d.id = id;
+      const container = document.getElementById('c');
+      container.appendChild(d);
+
+      (global.window.gZgokZoeQueue = (global.window.gZgokZoeQueue || [])).push({frameId: frame});
+      (global.window.gZgokZoeWidgetQueue = (global.gZgokZoeWidgetQueue || [])).push({frameId: frame, parent: `#${id}`});
+    });
+    return;
+  }
 
   let script = `https://j.zucks.net.zimg.jp/j?f=${data['frameId']}`;
 
