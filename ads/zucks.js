@@ -25,7 +25,7 @@ export function zucks(global, data) {
 
   if (data['adtype'] === 'zoe') {
     loadScript(global, 'https://j.zoe.zucks.net/zoe.min.js', function() {
-      const frame = data['frameId'];
+      const frameId = data['frameId'];
       const id = 'zucks-widget-parent';
 
       const d = global.document.createElement('ins');
@@ -33,8 +33,10 @@ export function zucks(global, data) {
       const container = document.getElementById('c');
       container.appendChild(d);
 
-      (global.window.gZgokZoeQueue = (global.window.gZgokZoeQueue || [])).push({frameId: frame});
-      (global.window.gZgokZoeWidgetQueue = (global.gZgokZoeWidgetQueue || [])).push({frameId: frame, parent: `#${id}`});
+      (global.window.gZgokZoeQueue =
+        (global.window.gZgokZoeQueue || [])).push({frameId});
+      (global.window.gZgokZoeWidgetQueue =
+        (global.gZgokZoeWidgetQueue || [])).push({frameId, parent: `#${id}`});
     });
     return;
   }
